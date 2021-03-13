@@ -42,8 +42,8 @@ public class UserDAO {
             //7.关闭资源
             try {
                 DBUtil.closeAll(resultSet,prepareStatement,connection);
-            } catch (SQLException throwables){
-                throwables.printStackTrace();
+            } catch (SQLException e){
+                e.printStackTrace();
             }
 
         }

@@ -19,10 +19,10 @@ public class LoginServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        System.out.println("name:" + username);
-        System.out.println("password:" + password);
+//        String username = request.getParameter("username");
+//        String password = request.getParameter("password");
+//        System.out.println("name:" + username);
+//        System.out.println("password:" + password);
 
     }
 
@@ -36,18 +36,19 @@ public class LoginServlet extends HttpServlet {
         String username = request.getParameter("username");
         //获取注册的密码
         String password = request.getParameter("password");
+
         System.out.println("name:" + username);
         System.out.println("password:" + password);
 
-
+        //获取数据库中符合目标的数据
         UserDAO userDao = new UserDAO();
-
         List<User> userList = userDao.login(username,password);
         System.out.println(userList);
+
         if (userList.size()!=0){
             HttpSession session=request.getSession();
             session.setAttribute("username",username);
-//            resp.getWriter().write("success!");
+            response.getWriter().write("恭喜您！登录成功！success!");
             response.getWriter().write(String.valueOf(userList));
         }
         else{
